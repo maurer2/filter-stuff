@@ -100,7 +100,8 @@
         // "oven.bun-vscode",
         // "tamasfe.even-better-toml"
         // "biomejs.biome"
-        // "astro-build.astro-vscode"
+        // "astro-build.astro-vscode",
+        "chakra-ui.panda-css-vscode"
       ]
     }
   }
