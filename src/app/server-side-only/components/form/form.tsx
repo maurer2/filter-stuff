@@ -2,16 +2,14 @@
 
 // import { css } from '../../../../../styled-system/css';
 import { useRef, useId, useActionState } from 'react';
+import type { FormState } from '../../page';
 
 type FormProps = {
-  onFormSubmit: (
-    prevState: { filter1: boolean },
-    formData: FormData,
-  ) => Promise<{ filter1: boolean }>;
+  onFormSubmit: (prevState: FormState, formData: FormData) => Promise<FormState>;
 };
 
-const defaultFormState = {
-  filter1: false,
+const defaultFormState: FormState = {
+  isFilter1Active: false,
 };
 
 export default function Form({ onFormSubmit }: FormProps) {
@@ -31,7 +29,7 @@ export default function Form({ onFormSubmit }: FormProps) {
         type="checkbox"
         name="filter1"
         id={filterBinaryId}
-        defaultChecked={formState.filter1}
+        defaultChecked={formState.isFilter1Active}
         ref={filterBinary}
       />
       <label htmlFor={filterBinaryId}>Filter 1</label>
@@ -39,6 +37,12 @@ export default function Form({ onFormSubmit }: FormProps) {
       <hr />
 
       <button type="submit">Submit</button>
+
+      <hr />
+
+      <code>
+        <pre>{JSON.stringify(formState, null, 4)}</pre>
+      </code>
     </form>
   );
 }

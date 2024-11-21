@@ -6,13 +6,16 @@ const pageTitle = css({
   fontSize: '2xl',
 });
 
-const handleSubmit = async (prevState: { filter1: boolean }, formData: FormData) => {
+export type FormState = {
+  isFilter1Active: boolean;
+};
+
+const handleSubmit = async (prevState: FormState, formData: FormData) => {
   'use server';
 
-  console.log('prevState', formData);
-
-  const newFormState = {
-    filter1: formData.get('filter1') === 'on',
+  const newFormState: FormState = {
+    ...prevState,
+    isFilter1Active: formData.get('filter1') === 'on',
   };
 
   return newFormState;
